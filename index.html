@@ -248,6 +248,13 @@
 
   .shuffle-hint { margin-top:12px; font-size:11px; color:var(--text-dim); letter-spacing:.07em; text-align:center; }
 
+  /* Card area wrapper */
+  .card-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   /* Side list */
   .side-list { width:280px; flex-shrink:0; }
   .side-title { font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--text-dim); margin-bottom:16px; }
@@ -274,9 +281,80 @@
   .list-item.active .list-text { color:var(--text); }
 
   @media (max-width:860px) {
-    main { flex-direction:column; padding:32px 24px; gap:32px; }
-    .side-list { width:100%; max-width:360px; }
-    header { padding:20px 24px; }
+    body { height: 100dvh; overflow: hidden; }
+
+    header { padding:16px 20px; flex-shrink:0; }
+
+    main {
+      flex-direction: column;
+      padding: 0;
+      gap: 0;
+      height: calc(100dvh - 65px);
+      overflow: hidden;
+    }
+
+    /* 카드 + 버튼 영역: 고정 높이 */
+    .card-area {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 24px 16px;
+    }
+
+    .card-scene {
+      width: 260px;
+      height: 360px;
+    }
+
+    .deck-ghost {
+      width: 236px !important;
+      height: 330px !important;
+      top: 18px !important;
+    }
+
+    .card-flipper {
+      width: 252px !important;
+      height: 346px !important;
+      top: 8px !important;
+    }
+
+    .whoosh-card {
+      width: 252px !important;
+      height: 346px !important;
+      top: 8px !important;
+    }
+
+    .card-num { font-size: 38px !important; margin-bottom: 12px !important; }
+    .card-q   { font-size: 13.5px !important; line-height: 1.8 !important; }
+    .card-hint { font-size: 11px !important; }
+    .card-hint-wrap { margin-top: 16px !important; padding-top: 14px !important; }
+    .card-front { padding: 28px 24px 24px !important; }
+
+    .nav-row { margin-top: 16px; }
+    #shuffleSection { margin-top: 16px !important; }
+    .progress-dots { margin-top: 10px; }
+
+    /* 질문 목록: 남은 공간 채우고 내부만 스크롤 */
+    .side-list {
+      width: 100% !important;
+      max-width: 100% !important;
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 0 20px 16px;
+      overflow: hidden;
+    }
+
+    .side-title { margin-bottom: 10px; flex-shrink: 0; }
+
+    .list-wrap {
+      flex: 1;
+      min-height: 0;
+      max-height: none !important;
+      overflow-y: auto;
+    }
   }
 </style>
 </head>
@@ -288,7 +366,7 @@
 </header>
 
 <main>
-  <div style="display:flex;flex-direction:column;align-items:center">
+  <div class="card-area">
 
     <div class="card-scene">
       <!-- Deck ghost cards -->
